@@ -1,0 +1,39 @@
+# ---- secrets: never upload
+.env
+*.env
+!.env.example
+
+# ---- personal data (each user's conversations, memories, recordings, budget, settings)
+server/memory.json
+server/memory_backup*.json
+server/facts.json
+server/reminders.json
+server/voice_baseline.json
+server/wallet.json
+server/chitti_settings.json
+server/chitti.log*
+server/debug/
+server/voice_samples/
+server/offline_audio/
+
+# ---- generated / installed / machine-specific
+server/.venv/
+**/__pycache__/
+*.pyc
+firmware/build/
+firmware/build_anim/
+firmware/managed_components/
+firmware/sdkconfig
+firmware/sdkconfig.old
+firmware/idf_path.txt
+*.log
+
+# ---- editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# ---- your board backup (large, personal)
+backup/
+server/ffmpeg/

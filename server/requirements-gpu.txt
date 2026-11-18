@@ -1,0 +1,4 @@
+# Only for PCs with an NVIDIA graphics card: lets Whisper (local speech recognition) run on the GPU.
+# "Start Chitti Junior.bat" installs these automatically when it finds an NVIDIA card.
+nvidia-cublas-cu12
+nvidia-cudnn-cu12==9.*

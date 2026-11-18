@@ -1,0 +1,10 @@
+# Chitti's PC server (Python 3.10-3.12). Installed by "Start Chitti Junior.bat".
+# NVIDIA GPU extras are in requirements-gpu.txt.
+anthropic>=2.8
+aiohttp>=3.9
+websockets>=13
+edge-tts>=7
+numpy>=1.26
+faster-whisper>=1.1
+pyserial>=3.5
+esptool>=4.7,<6       # writes Chitti's firmware to the board
