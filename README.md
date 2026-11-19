@@ -78,6 +78,8 @@ Buy the parts from any shop or seller; just check the names match. If the module
 | 8766 (UDP) | Auto-discovery |
 | 8768 (HTTP, this PC only) | The dashboard at http://localhost:8768 |
 
+Windows asks once to allow Python through the firewall. Allow it on **private networks**.
+
 ---
 
 ## 3. What you need
@@ -86,9 +88,9 @@ Buy the parts from any shop or seller; just check the names match. If the module
 |---|---|
 | The 7 parts | See [section 1](#1-parts-i-used) |
 | Windows 10 or 11 PC or laptop | Stays on (not asleep) while you talk. Wi-Fi or LAN cable. |
-| Python 3.12, ffmpeg, Visual C++ runtime | **Installed for you** if missing |
+| Python 3.12, ffmpeg, Visual C++ runtime | **Installed for you** if missing. Python 3.13 and newer are not supported yet. |
 | About 4 GB free disk space and internet | Checked by the installer |
-| 2.4 GHz Wi-Fi | The ESP32 doesn't support 5 GHz. No guest Wi-Fi. |
+| 2.4 GHz Wi-Fi | The ESP32 doesn't support 5 GHz. No guest Wi-Fi. A phone hotspot works if the PC joins the same hotspot. |
 | **Your own Anthropic API key** | Required |
 | Your own Sarvam API key | Optional, recommended for Telugu |
 
@@ -105,12 +107,13 @@ Chitti Junior doesn't come with any API keys. Every user creates their own and p
 4. Under **API Keys**, choose **Create Key** and copy it. It starts with `sk-ant-`.
 
 ### Sarvam AI: optional (natural Telugu voice and hearing)
-Sign up at https://dashboard.sarvam.ai and create an API key. Without it, Junior uses a free Microsoft voice and Whisper.
+Sign up at https://dashboard.sarvam.ai (new accounts usually get some free credits) and create an API key. Without it, Junior still works: she uses a free Microsoft Telugu voice and hears you with Whisper on your PC, which is slower and less accurate for Telugu.
 
 **Costs:**
 - Claude Haiku 5.5 (the default) costs a fraction of a rupee per reply; Sonnet 5.5 costs several times more.
 - Sarvam costs about ₹0.5 per minute of listening, and ₹10–30 per 10,000 characters of speech.
-- Prices change, so check the official pages. Use spend limits.
+- Chatting for a while every day usually costs **a few rupees a day**.
+- Prices change, so check the official pages. Use the spend limits on both websites. **You are responsible for your own API bills.**
 
 ---
 
@@ -119,8 +122,16 @@ Sign up at https://dashboard.sarvam.ai and create an API key. Without it, Junior
 Full guide: **[INSTALL.md](INSTALL.md)**.
 
 1. **Build Junior:** follow [ASSEMBLY.md](ASSEMBLY.md) or the [PDF guide](Chitti-Junior-Assembly-Guide.pdf). Unplug the USB cable while wiring.
-2. **Download** this project: get the **latest release**, or choose **Code**, then **Download ZIP**. Unzip it to a simple folder like `C:\ChittiJunior`.
-3. Double-click **`Start Chitti Junior.bat`**. The first time, it checks your PC and installs everything (5–10 minutes), then opens the dashboard.
+2. **Download** this project: get the **latest release**, or choose **Code**, then **Download ZIP**. Unzip it to a simple folder like `C:\ChittiJunior`, not inside OneDrive.
+3. Double-click **`Start Chitti Junior.bat`**. The first time, it checks your PC and installs everything (5–10 minutes), then opens the dashboard. Keep the black window open while you use Junior.
+
+   The installer checks each of these and fixes what's missing, asking you first:
+   - 64-bit Windows, disk space and internet;
+   - Python 3.12;
+   - the Microsoft Visual C++ runtime;
+   - Chitti Junior's packages;
+   - ffmpeg;
+   - a Windows Firewall rule so Junior can reach your PC.
 4. The dashboard's **setup wizard** does the rest:
    1. **Keys:** paste your Claude key (and your Sarvam key, if you have one), then tick the own-risk box.
    2. **Install Chitti Junior on the board:** plug the ESP32's **COM** port into the PC and click **Install Chitti Junior** (progress bar, about 1 minute). On the first start, Junior shows a **screen test**: hold **BOOT** for 2 s if the text looks right.
@@ -128,6 +139,8 @@ Full guide: **[INSTALL.md](INSTALL.md)**.
    4. **Say hi:** when the wizard shows **Junior online**, press **BOOT** and talk.
 
 **Every day after that:** power Junior from USB, a charger or a power bank; double-click `Start Chitti Junior.bat`; then talk.
+
+You can redo any step later: the dashboard's **Device** section has **Install firmware** and **Run setup again**.
 
 The `tools` folder has manual versions of the wizard's steps:
 - `Flash Chitti Junior.bat`
@@ -152,6 +165,9 @@ Things to try:
 - *"నన్ను రోస్ట్ చెయ్"* (roast me)
 - *"ఈరోజు వాతావరణం ఎలా ఉంది?"* (what's the weather today?)
 - *"నా పేరు ___, గుర్తుపెట్టుకో"* (my name is ___, remember it)
+- *"రేపు 7 కి నాకు గుర్తు చెయ్"* (remind me tomorrow at 7)
+
+Change her speaker volume from the dashboard's **Device** section.
 
 ---
 
@@ -169,13 +185,29 @@ The dashboard runs at **http://localhost:8768**, on this PC only. It's the same 
 ## 8. Privacy and safety
 
 - **Your keys stay on your PC** (in `server\.env` and your Windows settings), and are only sent to their own service. Entering a new key deletes the old one, and a wrong Claude key is refused.
-- **Your chats and memories stay on your PC.** The dashboard's **Reset** erases them.
-- **Nothing is sent to the author.** There are no analytics. The only services contacted are Anthropic, Sarvam (only with a Sarvam key), Microsoft Edge TTS (only for the free voice) and Open-Meteo (only for weather).
+- **Your chats and memories stay on your PC**, in the `server` folder (`memory.json`, `facts.json`, `reminders.json`). The dashboard's **Reset** erases them.
+- **Nothing is sent to the author.** There is no analytics, no tracking and no author server. The only services contacted:
+  - **Anthropic**, which receives the conversation text to write replies;
+  - **Sarvam**, which receives your voice and reply text, only if you add a Sarvam key;
+  - **Microsoft Edge TTS**, which receives the reply text, only for the free voice;
+  - **Open-Meteo**, which receives your city name, only when you ask about the weather.
+- Read Anthropic's and Sarvam's own privacy policies to understand how they handle your data.
 - Your Wi-Fi password is stored only on the board. The dashboard only accepts connections from your own PC.
+- **If you fork or upload this project, never commit `server\.env`.** The included `.gitignore` already keeps keys and personal files out of git.
 
 ---
 
 ## 9. Troubleshooting
+
+### Quick answers
+
+- **Do I need a Wi-Fi adapter on my PC?** No. The PC just needs to be on the same router as Junior, by Wi-Fi or LAN cable. You only need a Wi-Fi adapter for the **Scan** button; without one, type the Wi-Fi name.
+- **My router shows two names, like "Home" and "Home-5G".** Put Junior on the one without "5G". The PC can use either.
+- **Can I use guest Wi-Fi?** Usually no. Guest networks (and routers with "AP isolation") stop devices from seeing each other.
+- **Does the PC need to stay on?** Yes. Junior's brain runs on the PC. If it sleeps, she goes offline until it wakes. Keep the black **Start Chitti Junior** window open.
+- **Does Junior work without internet?** No. She needs the internet to reach Claude and Sarvam.
+
+### Problems and fixes
 
 | Problem | Fix |
 |---|---|
@@ -188,6 +220,12 @@ The dashboard runs at **http://localhost:8768**, on this PC only. It's the same 
 | Crackle or rattle | Power from a 2 A charger or power bank, volume 60–80%, keep the speaker standing (not face-down), keep the VIN and GND wires short. |
 | "Junior offline" | Same 2.4 GHz Wi-Fi as the PC, server running, Python allowed through the firewall (`tools\Allow Chitti in Firewall.bat`). |
 | "Python 3.12 is needed" | Install Python 3.12 with **Add python.exe to PATH** ticked, then run `Start Chitti Junior.bat` again. |
+| Install stopped halfway | Fix the message it shows, then run `Start Chitti Junior.bat` again; it continues where it stopped. If it keeps failing, delete the `server\.venv` folder and try again. |
+| Silent replies | Check that ffmpeg is installed: open a new window and type `ffmpeg -version`. Raise the volume in the dashboard. |
+| "API key" errors | Check that your key is saved (green tick on Home), that you have credits, and that your spend limit isn't reached. |
+| Wi-Fi scan shows nothing | Windows needs **Location services** turned on to scan. Or just type the Wi-Fi name. |
+| She mishears Telugu | Add a Sarvam key; it's much better than Whisper for Telugu. Speak close to the mic. |
+| Port already in use | Another program uses 8765, 8766 or 8768. Close it, or set the port variables in [section 10](#10-for-developers). |
 
 The black **Start Chitti Junior** window shows what's happening; there's also a log in `server\chitti.log`.
 
@@ -208,7 +246,14 @@ chitti-junior/
 └─ Chitti-Junior-Assembly-Guide.pdf
 ```
 
-To build the firmware yourself, install ESP-IDF v5.5, put its folder in `firmware\idf_path.txt`, then run `firmware\build.bat flash`.
+**Environment variables** (optional):
+- `CHITTI_MODEL`
+- `CHITTI_PORT` (8765), `CHITTI_DISCOVERY_PORT` (8766), `CHITTI_DASHBOARD_PORT` (8768)
+- `CHITTI_NO_BROWSER=1`
+
+The board finds the PC on UDP port 8766, so change it only if you also change the firmware.
+
+To build the firmware yourself, install ESP-IDF v5.5, put its folder in `firmware\idf_path.txt`, then run `firmware\build.bat flash`. Check the prebuilt files against `firmware\prebuilt\SHA256SUMS.txt`.
 
 **Flash layout** (DIO, 80 MHz, 16 MB):
 
@@ -230,13 +275,15 @@ Chitti Junior is shared **free, for learning and fun, "as is", with no warranty 
   - damaged boards, parts, PCs or other hardware;
   - data loss, overheating, fire, injury or electrical problems;
   - **API charges** from Anthropic, Sarvam or any other service;
-  - leaked keys;
-  - anything the AI says;
-  - any other loss.
+  - leaked or misused API keys;
+  - anything Junior says, since AI replies can be wrong, rude or inappropriate;
+  - any other loss or damage.
 - **You use your own API keys and pay your own bills.** Set spend limits.
-- Buying parts and building is **at your own risk**. Double-check 3V3 and 5V before powering on.
+- Buying parts and building is **at your own risk**. Always unplug USB while wiring, and double-check 3V3 and 5V before powering on. Wrong wiring can damage the board or parts. If anything gets hot or smells, unplug immediately.
+- Flashing replaces the board's original software. Use the optional backup if you may want it back.
 - Junior isn't a medical, legal, financial or safety tool, and isn't meant for unsupervised young children.
 - The author isn't affiliated with Espressif, Anthropic, Sarvam AI, Microsoft or any parts seller. Trademarks belong to their owners.
+- You are responsible for following the terms of service of every API you use and the laws where you live.
 
 ---
 
