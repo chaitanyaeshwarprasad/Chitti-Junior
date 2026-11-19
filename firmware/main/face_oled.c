@@ -1,3 +1,4 @@
+// Part of Chitti Junior by Chaitanya Eshwar Prasad (https://chaitanyaeshwarprasad.com). MIT licence.
 #include "board_jr.h"
 #if JR_DISPLAY_OLED  // mini OLED build only
 // Chitti Junior's face on the mini 128 x 64 OLED: two big glowing eyes with moods, a little mouth that moves

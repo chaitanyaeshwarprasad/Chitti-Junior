@@ -1,3 +1,4 @@
+// Part of Chitti Junior by Chaitanya Eshwar Prasad (https://chaitanyaeshwarprasad.com). MIT licence.
 #include "board_jr.h"
 #if JR_DISPLAY_OLED  // mini OLED build only
 // Chitti Junior: mini 128 x 64 OLED over I2C (SSD1306 or SH1106). Same drawing interface as the 3.5" screen
@@ -52,16 +53,22 @@ static volatile int s_bl_cur = -1;
 // find the screen and start it; called at start-up and again every 2 s while it's missing
 // (a loose wire pushed back in brings the face back without a restart)
 static bool oled_connect(void) {
-    uint16_t addr = 0;
-    if (i2c_master_probe(s_bus, 0x3C, 50) == ESP_OK) addr = 0x3C;
-    else if (i2c_master_probe(s_bus, 0x3D, 50) == ESP_OK) addr = 0x3D;
-    if (!addr) return false;
-    if (addr != s_addr) {
-        if (s_dev) i2c_master_bus_rm_device(s_dev), s_dev = NULL;
-        i2c_device_config_t dc = {.dev_addr_length = I2C_ADDR_BIT_LEN_7, .device_address = addr, .scl_speed_hz = 400000};
+    // Find the screen only once (an address "ping" after it is running upsets some OLEDs).
+    // Later calls just send the start-up commands again; the bus is unjammed only after a real failure.
+    static bool s_failed;
+    if (!s_dev) {
+        uint16_t addr = 0;
+        if (i2c_master_probe(s_bus, 0x3C, 50) == ESP_OK) addr = 0x3C;
+        else if (i2c_master_probe(s_bus, 0x3D, 50) == ESP_OK) addr = 0x3D;
+        if (!addr) return false;
+        i2c_device_config_t dc = {.dev_addr_length = I2C_ADDR_BIT_LEN_7, .device_address = addr,
+                                  .scl_speed_hz = 100000};  // slower = reliable on breadboard wires
         if (i2c_master_bus_add_device(s_bus, &dc, &s_dev) != ESP_OK) return false;
         s_addr = addr;
+    } else if (s_failed) {
+        i2c_master_bus_reset(s_bus);  // a message failed before: free a stuck data line
     }
+    uint16_t addr = s_addr;
     s_ok = true;
     bool flip = VARIANTS[s_var].flip;
     uint8_t seg = flip ? 0xA0 : 0xA1, com = flip ? 0xC0 : 0xC8;
@@ -77,7 +84,8 @@ static bool oled_connect(void) {
     s_first = true;     // send the whole picture again
     s_bl_cur = -1;      // re-apply brightness
     cmds((const uint8_t[]){0xAF}, 1);  // display on
-    ESP_LOGI(TAG, "mini screen ready at 0x%02X: %s (setting %d)", addr, VARIANTS[s_var].name, s_var + 1);
+    s_failed = !s_ok;
+    if (s_ok) ESP_LOGI(TAG, "mini screen ready at 0x%02X: %s (setting %d)", addr, VARIANTS[s_var].name, s_var + 1);
     return s_ok;
 }
 
@@ -87,7 +95,13 @@ void lcd_init(int variant) {
                                   .clk_source = I2C_CLK_SRC_DEFAULT, .glitch_ignore_cnt = 7,
                                   .flags.enable_internal_pullup = true};
     ESP_ERROR_CHECK(i2c_new_master_bus(&bc, &s_bus));
-    for (int tries = 0; tries < 3 && !oled_connect(); tries++) vTaskDelay(pdMS_TO_TICKS(100));
+    // after power-on the OLED needs a moment before it listens; the ESP32 starts faster than that
+    vTaskDelay(pdMS_TO_TICKS(250));
+    for (int tries = 0; tries < 5 && !oled_connect(); tries++) vTaskDelay(pdMS_TO_TICKS(200));
+    if (s_ok) {  // start it a second time: a screen still waking up can miss the first start-up commands
+        vTaskDelay(pdMS_TO_TICKS(300));
+        oled_connect();
+    }
     if (!s_ok) ESP_LOGE(TAG, "mini screen not found: check VDD 3V3, GND, SDA -> 11, SCK -> 12 (retrying)");
     lcd_fill(0);
     lcd_flush_all();
@@ -125,6 +139,12 @@ void lcd_flush_all(void) {
 }
 
 void lcd_flush(void) {  // only the 8-pixel rows that changed
+    static int64_t s_rewake_at = 3000000;  // 3 s and 8 s after start: start the screen once more, just in case
+    int64_t up = esp_timer_get_time();
+    if (s_ok && s_rewake_at && up > s_rewake_at) {
+        s_rewake_at = s_rewake_at < 8000000 ? 8000000 : 0;
+        oled_connect();
+    }
     if (!s_ok) {  // screen missing or a wire came loose: try again every 2 s
         int64_t now = esp_timer_get_time();
         if (now < s_next_try) return;

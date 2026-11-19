@@ -66,8 +66,6 @@ Junior uses a small **4-pin OLED screen** (0.96" or 1.3", pins `GND VDD SCK SDA`
 | **SCK** (or SCL) | ESP32 **GPIO 12** |
 | **SDA** | ESP32 **GPIO 11** |
 
-> Advanced: a 3.5" SPI screen also works (VCC 3V3, GND, CS 10, RESET 14, DC 9, SDI 11, SCK 12, LED 21): set
-> `JR_DISPLAY_OLED` to `0` in `firmware/main/board_jr.h` and build the firmware yourself.
 
 ---
 
@@ -137,3 +135,15 @@ The software installs most easily through the ESP32's **COM** port; Wi-Fi setup 
 | BOOT button (on the ESP32) | **Talk button**: press to talk, press again to stop her |
 
 *Chitti Junior by Chaitanya Eshwar Prasad ([chaitanyaeshwarprasad.com](https://chaitanyaeshwarprasad.com)). Build at your own risk; the creator is not responsible for any damage.*
+
+---
+
+## 👤 About the Author
+
+Created and maintained by **Chaitanya Eshwar Prasad**. Connect with me or follow my work:
+
+[![Website](https://img.shields.io/badge/Website-chaitanyaeshwarprasad.com-005F9E?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chaitanyaeshwarprasad.com)
+[![GitHub](https://img.shields.io/badge/GitHub-chaitanyaeshwarprasad-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/chaitanyaeshwarprasad)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Chaitanya%20Eshwar%20Prasad-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/chaitanya-eshwar-prasad)
+[![YouTube](https://img.shields.io/badge/YouTube-@chaitanya.eshwar.prasad-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@chaitanya.eshwar.prasad)
+[![Instagram](https://img.shields.io/badge/Instagram-@acep.tech.in.telugu-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/acep.tech.in.telugu)

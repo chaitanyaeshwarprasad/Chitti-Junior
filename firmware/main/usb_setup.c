@@ -1,3 +1,4 @@
+// Part of Chitti Junior by Chaitanya Eshwar Prasad (https://chaitanyaeshwarprasad.com). MIT licence.
 // Wi-Fi setup over the USB cable: the PC script (server/set_wifi.py) sends one line
 //   CHITTI-WIFI {"ssid":"...","pass":"...","server":""}
 // and Chitti saves it and restarts. No phone needed.

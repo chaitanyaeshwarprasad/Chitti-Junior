@@ -1,3 +1,4 @@
+// Part of Chitti Junior by Chaitanya Eshwar Prasad (https://chaitanyaeshwarprasad.com). MIT licence.
 // Chitti Junior audio: INMP441 microphone (I2S 0, in) and MAX98357A amplifier (I2S 1, out).
 // Same interface as big Chitti (audio.h): 24 kHz mono PCM both ways.
 #include "audio.h"

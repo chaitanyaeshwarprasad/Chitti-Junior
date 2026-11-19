@@ -1,6 +1,6 @@
 # Chitti Junior: a low-budget Telugu AI friend you build on a breadboard
 
-Chitti Junior is the do-it-yourself little sister of [Chitti](https://github.com/chaitanyaeshwarprasad/chitti). Press her button, speak in Telugu, English or a mix, and she answers out loud in natural Telugu, with glowing eyes that react on a tiny screen. She has a personality you choose: a friendly roaster, a funny one, a chill one or a caring one.
+Chitti Junior is a do-it-yourself, low-budget version of [Chitti](https://github.com/chaitanyaeshwarprasad/chitti). Press her button, speak in Telugu, English or a mix, and she answers out loud in natural Telugu, with glowing eyes that react on a tiny screen. She has a personality you choose: a friendly roaster, a funny one, a chill one or a caring one.
 
 She's built from **7 cheap parts on a breadboard, with no soldering**. The board connects over your Wi-Fi to a free program on your Windows PC, which uses **your own** Claude and Sarvam API keys.
 
@@ -201,7 +201,7 @@ chitti-junior/
 ├─ tools/                    manual flash / Wi-Fi / key / firewall scripts
 ├─ server/                   PC server (Python): speech → Claude → speech, dashboard
 ├─ firmware/                 ESP-IDF v5.5 firmware source (C)
-│  ├─ main/board_jr.h        pin map; JR_DISPLAY_OLED 1 = mini OLED, 0 = 3.5" SPI screen
+│  ├─ main/board_jr.h        pin map (must match ASSEMBLY.md)
 │  └─ prebuilt/              ready-made .bin files the dashboard installs
 ├─ docs/protocol.md          board ↔ PC messages (same as Chitti)
 ├─ ASSEMBLY.md               wiring guide

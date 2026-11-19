@@ -1,3 +1,4 @@
+// Part of Chitti Junior by Chaitanya Eshwar Prasad (https://chaitanyaeshwarprasad.com). MIT licence.
 // Chitti Junior: same Wi-Fi, discovery and server link as big Chitti (copied, unchanged otherwise).
 #include "net.h"
 

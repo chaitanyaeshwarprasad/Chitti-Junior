@@ -1,5 +1,5 @@
 // Chitti Junior firmware by Chaitanya Eshwar Prasad (https://chaitanyaeshwarprasad.com). MIT licence.
-// Chitti Junior: ESP32-S3-N16R8 + 3.5" touch screen + INMP441 mic + MAX98357A amplifier.
+// Chitti Junior: ESP32-S3 N16R8 + 0.96-inch OLED + INMP441 microphone + MAX98357A amplifier + speaker.
 // Talks to the same Chitti PC server as big Chitti (same protocol, docs/protocol.md).
 #include <stdio.h>
 #include <stdlib.h>
@@ -92,8 +92,7 @@ static void buttons_init(void) {
 static void screen_test(int start) {
     int v = start;
     while (1) {
-#if JR_DISPLAY_OLED
-        // mini screen: a frame round the edge + readable text = right setting
+        // a frame round the edge + readable text = the right setting
         lcd_fill(0);
         lcd_rect(0, 0, LCD_W, 1, 0xFFFF), lcd_rect(0, LCD_H - 1, LCD_W, 1, 0xFFFF);
         lcd_rect(0, 0, 1, LCD_H, 0xFFFF), lcd_rect(LCD_W - 1, 0, 1, LCD_H, 0xFFFF);
@@ -103,24 +102,6 @@ static void screen_test(int start) {
         lcd_text(4, 18, "Readable+full", FONT_SMALL, 0xFFFF);
         lcd_text(4, 33, "frame? hold BOOT", FONT_SMALL, 0xFFFF);
         lcd_text(4, 48, "No: press BOOT", FONT_SMALL, 0xFFFF);
-        if (0)
-#endif
-        lcd_fill(RGB565(255, 255, 255));
-#if !JR_DISPLAY_OLED
-        lcd_rect(4, 4, LCD_W - 8, LCD_H - 8, 0);
-        lcd_rect(20, 70, 140, 90, RGB565(255, 0, 0));
-        lcd_rect(170, 70, 140, 90, RGB565(0, 255, 0));
-        lcd_rect(320, 70, 140, 90, RGB565(0, 0, 255));
-        lcd_text(55, 100, "RED", FONT_BIG, 0xFFFF);
-        lcd_text(195, 100, "GREEN", FONT_BIG, 0);
-        lcd_text(350, 100, "BLUE", FONT_BIG, 0xFFFF);
-        char t[64];
-        snprintf(t, sizeof(t), "Screen test  %d / %d  (%s)", v + 1, lcd_variant_count(), lcd_variant_name(v));
-        lcd_text(20, 20, t, FONT_BIG, 0xFFFF);
-        lcd_text(20, 190, "Words readable, not mirrored, colours match?", FONT_SMALL, 0xFFFF);
-        lcd_text(20, 220, "YES: hold BOOT for 2 seconds", FONT_SMALL, RGB565(127, 248, 255));
-        lcd_text(20, 246, "NO:  press BOOT once to try the next one", FONT_SMALL, RGB565(255, 200, 80));
-#endif
         lcd_flush_all();
 
         while (btn_pressed()) vTaskDelay(pdMS_TO_TICKS(20));  // wait for release
