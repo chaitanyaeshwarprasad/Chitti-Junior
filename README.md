@@ -1,8 +1,8 @@
-# Chitti Junior: a low-budget Telugu AI friend you build on a breadboard
+# Chitti Junior: Chitti you assemble yourself
 
-Chitti Junior is a do-it-yourself, low-budget version of [Chitti](https://github.com/chaitanyaeshwarprasad/chitti). Press her button, speak in Telugu, English or a mix, and she answers out loud in natural Telugu, with glowing eyes that react on a tiny screen. She has a personality you choose: a friendly roaster, a funny one, a chill one or a caring one.
+Chitti Junior is [Chitti](https://github.com/chaitanyaeshwarprasad/chitti), assembled by you. Same brain, same Telugu voice, same personalities, memory and dashboard; **the only difference is that you build the hardware yourself** from a few common parts instead of using a ready-made board. Press her button, speak in Telugu, English or a mix, and she answers out loud in natural Telugu, with glowing eyes that react on a small screen.
 
-She's built from **7 cheap parts on a breadboard, with no soldering**. The board connects over your Wi-Fi to a free program on your Windows PC, which uses **your own** Claude and Sarvam API keys.
+She's put together from **7 common parts with jumper wires, no soldering**. The board connects over your Wi-Fi to a free program on your Windows PC, which uses **your own** Claude and Sarvam API keys.
 
 > **Free and open source.** You only pay for your own API use, usually a few rupees a day.
 > **Created by [Chaitanya Eshwar Prasad](https://chaitanyaeshwarprasad.com)**. Watch the build video and more on [YouTube](https://www.youtube.com/@chaitanya.eshwar.prasad) and [Instagram @acep.tech.in.telugu](https://instagram.com/acep.tech.in.telugu).
