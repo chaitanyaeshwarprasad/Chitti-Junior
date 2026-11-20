@@ -4,3 +4,4 @@
 *.bin binary
 *.rgb565 binary
 *.png binary
+*.stl binary

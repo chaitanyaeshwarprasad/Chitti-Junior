@@ -53,6 +53,14 @@ Buy the parts from any shop or seller; just check the names match. If the module
 
 **Wiring:** see **[ASSEMBLY.md](ASSEMBLY.md)** or the printable **[PDF guide](Chitti-Junior-Assembly-Guide.pdf)**. There are about 18 wires, one device at a time.
 
+### 3D-printed case (optional)
+
+Download **[enclosure/chitti-junior-enclosure.stl](enclosure/chitti-junior-enclosure.stl)**: a box for Junior with a screen window, speaker grille, mic holes and a holder for the ESP32 board.
+
+- Size: **84 × 47 × 87 mm**. About **88 g of PLA** (around 29 m of filament).
+- The file has all parts in their assembled positions. In your slicer, choose **Split to objects**, then lay each part flat on the bed (front piece face down, back cover back face down). Don't print it as one piece, or the parts stick together.
+- ⚠️ **Not tested yet.** Before printing, check that your speaker, ESP32 board and USB ports fit the design. Parts differ between sellers.
+
 ---
 
 ## 2. How Chitti Junior works
