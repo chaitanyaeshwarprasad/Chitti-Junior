@@ -1,17 +1,35 @@
+<div align="center">
+
 # Chitti Junior: Chitti you assemble yourself
+
+[![Release](https://img.shields.io/github/v/release/chaitanyaeshwarprasad/chitti-junior?style=flat-square&color=7c3aed)](https://github.com/chaitanyaeshwarprasad/chitti-junior/releases/latest)
+[![MIT License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
+[![Windows 10 | 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?style=flat-square&logo=windows&logoColor=white)](#3-what-you-need)
+[![ESP32-S3 N16R8](https://img.shields.io/badge/ESP32--S3-N16R8-E7352C?style=flat-square&logo=espressif&logoColor=white)](#1-parts-i-used)
+[![No soldering](https://img.shields.io/badge/Build-No%20soldering-14b8a6?style=flat-square)](#1-parts-i-used)
+[![Claude](https://img.shields.io/badge/Brain-Claude-D97757?style=flat-square&logo=anthropic&logoColor=white)](#4-buy-your-api-keys-you-must-use-your-own)
+[![Sarvam AI](https://img.shields.io/badge/Voice-Sarvam%20AI-2563eb?style=flat-square)](#4-buy-your-api-keys-you-must-use-your-own)
+[![Telugu](https://img.shields.io/badge/Language-Telugu-f59e0b?style=flat-square)](#6-using-chitti-junior)
+
+</div>
 
 Chitti Junior is [Chitti](https://github.com/chaitanyaeshwarprasad/chitti), assembled by you. Same brain, same Telugu voice, same personalities, memory and dashboard; **the only difference is that you build the hardware yourself** from a few common parts instead of using a ready-made board. Press her button, speak in Telugu, English or a mix, and she answers out loud in natural Telugu, with glowing eyes that react on a small screen.
 
 She's put together from **7 common parts with jumper wires, no soldering**. The board connects over your Wi-Fi to a free program on your Windows PC, which uses **your own** Claude and Sarvam API keys.
 
-> **Free and open source.** You only pay for your own API use, usually a few rupees a day.
+> [!TIP]
+> **Free and open source.** You only pay for your own API use, usually a few rupees a day.<br>
 > **Created by [Chaitanya Eshwar Prasad](https://chaitanyaeshwarprasad.com)**. Watch the build video and more on [YouTube](https://www.youtube.com/@chaitanya.eshwar.prasad) and [Instagram @acep.tech.in.telugu](https://instagram.com/acep.tech.in.telugu).
+
+<div align="center">
 
 [![Website](https://img.shields.io/badge/Website-chaitanyaeshwarprasad.com-005F9E?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chaitanyaeshwarprasad.com)
 [![GitHub](https://img.shields.io/badge/GitHub-chaitanyaeshwarprasad-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/chaitanyaeshwarprasad)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Chaitanya%20Eshwar%20Prasad-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/chaitanya-eshwar-prasad)
 [![YouTube](https://img.shields.io/badge/YouTube-@chaitanya.eshwar.prasad-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@chaitanya.eshwar.prasad)
 [![Instagram](https://img.shields.io/badge/Instagram-@acep.tech.in.telugu-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/acep.tech.in.telugu)
+
+</div>
 
 ---
 
@@ -86,7 +104,8 @@ Download **[enclosure/chitti-junior-enclosure.stl](enclosure/chitti-junior-enclo
 | 8766 (UDP) | Auto-discovery |
 | 8768 (HTTP, this PC only) | The dashboard at http://localhost:8768 |
 
-Windows asks once to allow Python through the firewall. Allow it on **private networks**.
+> [!NOTE]
+> Windows asks once to allow Python through the firewall. Allow it on **private networks**.
 
 ---
 
@@ -146,7 +165,8 @@ Full guide: **[INSTALL.md](INSTALL.md)**.
    3. **Wi-Fi:** move the cable to the ESP32's **USB** port, then type your 2.4 GHz Wi-Fi name and password.
    4. **Say hi:** when the wizard shows **Junior online**, press **BOOT** and talk.
 
-**Every day after that:** power Junior from USB, a charger or a power bank; double-click `Start Chitti Junior.bat`; then talk.
+> [!TIP]
+> **Every day after that:** power Junior from USB, a charger or a power bank; double-click `Start Chitti Junior.bat`; then talk.
 
 You can redo any step later: the dashboard's **Device** section has **Install firmware** and **Run setup again**.
 
@@ -277,7 +297,8 @@ To build the firmware yourself, install ESP-IDF v5.5, put its folder in `firmwar
 
 ## 11. Disclaimer (please read)
 
-Chitti Junior is shared **free, for learning and fun, "as is", with no warranty of any kind.** By downloading, building, flashing or using it, you agree that:
+> [!IMPORTANT]
+> Chitti Junior is shared **free, for learning and fun, "as is", with no warranty of any kind.** By downloading, building, flashing or using it, you agree that:
 
 - **The author, Chaitanya Eshwar Prasad, is not responsible for anything** that happens from using this project. That includes:
   - damaged boards, parts, PCs or other hardware;
@@ -305,6 +326,8 @@ Released under the [MIT Licence](LICENSE). Built with Claude by Anthropic, Sarva
 
 ## 👤 About the Author
 
+<div align="center">
+
 Created and maintained by **Chaitanya Eshwar Prasad**. Connect with me or follow my work:
 
 [![Website](https://img.shields.io/badge/Website-chaitanyaeshwarprasad.com-005F9E?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chaitanyaeshwarprasad.com)
@@ -312,3 +335,5 @@ Created and maintained by **Chaitanya Eshwar Prasad**. Connect with me or follow
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Chaitanya%20Eshwar%20Prasad-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/chaitanya-eshwar-prasad)
 [![YouTube](https://img.shields.io/badge/YouTube-@chaitanya.eshwar.prasad-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@chaitanya.eshwar.prasad)
 [![Instagram](https://img.shields.io/badge/Instagram-@acep.tech.in.telugu-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/acep.tech.in.telugu)
+
+</div>
