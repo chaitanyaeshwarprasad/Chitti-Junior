@@ -78,6 +78,7 @@ Download **[enclosure/chitti-junior-enclosure.stl](enclosure/chitti-junior-enclo
 - Size: **85 × 49 × 84 mm** (box) plus a **3 mm** back cover. About **80 g of PLA** (estimate; your slicer shows the exact amount).
 - The file has 5 parts: the box, the back cover, an inner support and two small pegs. In your slicer, choose **Split to objects**, then lay each part flat on the bed. Don't print it as one piece, or the parts stick together.
 - ⚠️ **Not tested yet.** Before printing, check that your speaker, ESP32 board and USB ports fit the design. Parts differ between sellers.
+- Printing and using the case is at your own risk. See the [disclaimer](#11-disclaimer-please-read).
 
 ---
 
@@ -309,6 +310,7 @@ To build the firmware yourself, install ESP-IDF v5.5, put its folder in `firmwar
   - any other loss or damage.
 - **You use your own API keys and pay your own bills.** Set spend limits.
 - Buying parts and building is **at your own risk**. Always unplug USB while wiring, and double-check 3V3 and 5V before powering on. Wrong wiring can damage the board or parts. If anything gets hot or smells, unplug immediately.
+- The **3D-printed case** is shared "as is" and is not tested. Printing and using it is **at your own risk**. The author is not responsible for failed prints, damage to your 3D printer, parts that don't fit, broken cases, or heat building up inside the case.
 - Flashing replaces the board's original software. Use the optional backup if you may want it back.
 - Junior isn't a medical, legal, financial or safety tool, and isn't meant for unsupervised young children.
 - The author isn't affiliated with Espressif, Anthropic, Sarvam AI, Microsoft or any parts seller. Trademarks belong to their owners.
