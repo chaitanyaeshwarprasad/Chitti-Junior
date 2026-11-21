@@ -73,10 +73,10 @@ Buy the parts from any shop or seller; just check the names match. If the module
 
 ### 3D-printed case (optional)
 
-Download **[enclosure/chitti-junior-enclosure.stl](enclosure/chitti-junior-enclosure.stl)**: a box for Junior with a screen window, speaker grille, mic holes and a holder for the ESP32 board.
+Download **[enclosure/chitti-junior-enclosure.stl](enclosure/chitti-junior-enclosure.stl)**: a box for Junior with a screen window, a speaker grille and a separate back cover.
 
-- Size: **84 × 47 × 87 mm**. About **88 g of PLA** (around 29 m of filament).
-- The file has all parts in their assembled positions. In your slicer, choose **Split to objects**, then lay each part flat on the bed (front piece face down, back cover back face down). Don't print it as one piece, or the parts stick together.
+- Size: **85 × 49 × 84 mm** (box) plus a **3 mm** back cover. About **80 g of PLA** (estimate; your slicer shows the exact amount).
+- The file has 5 parts: the box, the back cover, an inner support and two small pegs. In your slicer, choose **Split to objects**, then lay each part flat on the bed. Don't print it as one piece, or the parts stick together.
 - ⚠️ **Not tested yet.** Before printing, check that your speaker, ESP32 board and USB ports fit the design. Parts differ between sellers.
 
 ---
