@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/chitti-junior.png" alt="Chitti Junior" width="240">
+
 # Chitti Junior: Chitti you assemble yourself
 
 [![Release](https://img.shields.io/github/v/release/chaitanyaeshwarprasad/chitti-junior?style=flat-square&color=7c3aed)](https://github.com/chaitanyaeshwarprasad/chitti-junior/releases/latest)
